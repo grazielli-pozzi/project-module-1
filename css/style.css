@@ -1,0 +1,49 @@
+body {
+    background-color: cadetblue;
+}
+
+section {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: 50px;
+   text-align: center;
+   /* Adicionar imagem com os dominós na seção. */
+}
+
+h1, label {
+    text-align: center;
+    font-weight: bold;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.button {
+    padding: 30px;
+}
+
+select {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    width: 30%;
+    justify-content: center;
+}
+
+button {
+    padding: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
