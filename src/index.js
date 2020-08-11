@@ -7,23 +7,35 @@
 
 class Game {
     constructor(setOfPieces) {
-    this.setOfPieces = setOfPieces;
-    let newSetOfPieces = [];
-    let randomIndexes = [];
+        this.setOfPieces = setOfPieces;
+        let newSetOfPieces = [];
+        let randomIndexes = [];
     }
 
     shufflePieces() {
-    let randomNumber = Math.floor(Math.random() * this.setOfPieces.length);
-    if(!this.randomIndexes.includes(randomNumber)) {
-        this.randomIndexes.push(randomNumber);
-    } else {
-        randomNumber = Math.floor(Math.random() * this.setOfPieces.length);
-    }
-    
+        let randomNumber;
+        let elementToBeChanged;
+        for (let i = 0; i < this.setOfPieces.length; i++) {
+            randomNumber = Math.floor(Math.random() * i);
+            elementToBeChanged = this.setOfPieces[i];
+            this.setOfPieces[i] = this.setOfPieces[randomNumber];
+            this.setOfPieces[randomNumber] = elementToBeChanged;
+        }
+        return this.setOfPieces;
     }
 
-    selectInitialSetOfPieces() {
-
+    selectInitialSetOfPieces(arr) {
+        let newArr = [];
+        // let randomNumberA;
+        // let randomNumberB;
+        // let initialSetOfPieces = [];
+        // for(let i=0; i<arr.length; i++) {
+        //     randomNumberA = Math.floor(Math.random * i);
+        //     initialSetOfPieces.push(arr[randomNumberA]);
+        // }
+        newArr = arr.slice(0, 6);
+        let initialSetOfPieces = newArr.reverse();
+        return initialSetOfPieces;
     }
 
     checkWhoStarts() {
@@ -87,3 +99,9 @@ class Piece {
 
     }
 }
+
+let game = new Game([2, 3, 4, 5, 10, 30]);
+console.log(game.selectInitialSetOfPieces([1, 2, 3, 4, 5, 6, 7, 8]));
+
+// console.log(game.shufflePieces());
+
