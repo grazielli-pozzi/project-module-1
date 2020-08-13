@@ -51,3 +51,39 @@ button {
 .initialPieces {
     display: none;
 }
+
+.player_2 {
+    border: solid 3px blue;
+    width: 300%;
+}
+
+.piece {
+    border: solid black 1px;
+}
+
+.face_1 {
+    height: 10px;
+    width: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.face_2 {
+
+}
+
+.face_3 {
+
+}
+
+.face_4 {
+
+}
+
+.face_5 {
+
+}
+
+.face_6 {
+
+}

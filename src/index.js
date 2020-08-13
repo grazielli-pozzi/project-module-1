@@ -73,9 +73,11 @@ class Game {
         }
     }
 
+    
+
     //Blocking pieces that do not match with the piece on the table
     checkPossiblePieces(piece) {
-        
+
     }
 
 
