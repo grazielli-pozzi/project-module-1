@@ -8,8 +8,8 @@
 class Game {
     constructor(setOfPieces) {
         this.setOfPieces = setOfPieces;
-        this.piecesPlayer1 = selectInitialSetOfPieces();
-        this.piecesPlayer2 = selectInitialSetOfPieces();
+        this.piecesPlayer1 = selectInitialSetOfPieces('player1');
+        this.piecesPlayer2 = selectInitialSetOfPieces('player2');
         this.playerTurn;
     }
 
@@ -27,7 +27,7 @@ class Game {
 
     selectInitialSetOfPieces(player) {
         const newArr = this.setOfPieces.splice(0, 6);
-        for (let i=0; i< newArr.length; i++) {
+        for (let i = 0; i < newArr.length; i++) {
             newArr[i].player = player;
         }
         return newArr;
@@ -66,17 +66,60 @@ class Game {
     }
 
     checkPlayerTurn() {
-        if(this.playerTurn === 'player1') {
+        if (this.playerTurn === 'player1') {
             this.playerTurn = 'player2';
         } else if (this.playerTurn === 'player2') {
             this.playerTurn = 'player1';
         }
     }
 
-    
+
 
     //Blocking pieces that do not match with the piece on the table
     checkPossiblePieces(piece) {
+        let countPiecesPlayer1 = 0;
+        let countPiecesPlayer2 = 0;
+        if (this.playerTurn === 'player1') {
+            for (let i = 0; i < this.piecesPlayer1.length; i++) {
+                if (piece.pips[0].status === "free") {
+                    if (piece.pips[0].position === this.piecesPlayer1[i].pips[0].position) {
+                        this.piecesPlayer1[i].pips[0].status = "possible";
+                        countPiecesPlayer1 += 1;
+                    }
+                }
+                if (piece.pips[1].status === "free") {
+                    if (piece.pips[1].position === this.piecesPlayer1[i].pips[1].position) {
+                        this.piecesPlayer1[i].pips[1].status = "possible";
+                        countPiecesPlayer1 += 1;
+                    }
+                }
+            }
+            if(countPiecesPlayer1 === 0) {
+               console.log('No pieces available to be played');     
+            }
+            return this.piecesPlayer1;
+        }
+
+        if (this.playerTurn === 'player2') {
+            for (let i = 0; i < this.piecesPlayer2.length; i++) {
+                if (piece.pips[0].status === "free") {
+                    if (piece.pips[0].position === this.piecesPlayer2[i].pips[0].position) {
+                        this.piecesPlayer2[i].pips[0].status = "possible";
+                        countPiecesPlayer2 += 1;
+                    }
+                }
+                if (piece.pips[1].status === "free") {
+                    if (piece.pips[1].position === this.piecesPlayer2[i].pips[1].position) {
+                        this.piecesPlayer2[i].pips[1].status = "possible";
+                        countPiecesPlayer2 += 1;
+                    }
+                }
+            }
+            if(countPiecesPlayer2 === 0) {
+                console.log('No pieces available to be played');     
+             }
+             return this.piecesPlayer2;
+        }
 
     }
 

@@ -54,19 +54,22 @@ button {
 }
 
 .players {
-    height: 150px;
-    width: 300px;
+    height: 130px;
+    width: 200px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 .player_2 {
     height: 50%;
+    /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 .player_1 {
     height: 50%;
+    /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 
@@ -80,6 +83,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    padding: 5px;
 }
 
 .div_face_1 {
@@ -114,16 +118,19 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 2px;
 }
 
 .middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0.5px;
 }
 
 .end {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-right: 2px;
 }
