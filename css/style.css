@@ -8,6 +8,7 @@ section {
    justify-content: center;
    padding: 50px;
    text-align: center;
+   width: 100%;
    /* Adicionar imagem com os dominós na seção. */
 }
 
@@ -52,14 +53,26 @@ button {
     display: none;
 }
 
-.player_2 {
-    height: 50px;
+.players {
+    height: 150px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
+
+.player_2 {
+    height: 50%;
+}
+
+.player_1 {
+    height: 50%;
+}
+
 
 .piece {
     border: solid black 1px;
-    height: 35%;
-    width: 10%;
+    height: 100%;
     background-image: linear-gradient(#000, #000);
     background-size: 2px 100%;
     background-repeat: no-repeat;
@@ -79,7 +92,7 @@ button {
 .div_face_2 {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     width: 50%;
 }
 

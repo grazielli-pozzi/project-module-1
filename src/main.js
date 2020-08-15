@@ -121,94 +121,235 @@ piece_1.forEach(piece => {
          </div>`;
     }
 
+    if (piece.pips[1].position === 1) {
+        face2 = `<div class='middle'>
+        <div class='face_1'></div>
+        </div>`;
+    }
+    if (piece.pips[1].position === 2) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 3) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 4) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 5) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 6) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+
     content += `<div class = "piece" id='${piece.pips[0].position}${piece.pips[1].position}'> 
     <div class = "div_face_1 pip_${piece.pips[0].position}">
     ${face1}
     </div>
-    </div>`;
-
-    face1 = ``;
-
-    console.log(content);
-
-});
-
-    piece_2.forEach(piece => {
-        if (piece.pips[1].position === 1) {
-            face2 = `<div class='middle'>
-        <div class='face_2'></div>
-        </div>`;
-        }
-        if (piece.pips[1].position === 2) {
-            face2 = `<div class='start'>
-         <div class='face_2'></div>
-         </div>
-         <div class='end'>
-         <div class='face_2'></div>
-         </div>`;
-        }
-        if (piece.pips[1].position === 3) {
-            face2 = `<div class='start'>
-         <div class='face_2'></div>
-         </div>
-         <div class='middle'>
-         <div class='face_2'></div>
-         </div>
-         <div class='end'>
-         <div class='face_2'></div>
-         </div>`;
-        }
-        if (piece.pips[1].position === 4) {
-            face2 = `<div class='start'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>
-         <div class='end'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>`;
-        }
-        if (piece.pips[1].position === 5) {
-            face2 = `<div class='start'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>
-         <div class='middle'>
-         <div class='face_2'></div>
-         </div>
-         <div class='end'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>`;
-        }
-        if (piece.pips[1].position === 6) {
-            face2 = `<div class='start'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>
-         <div class='middle'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>
-         <div class='end'>
-         <div class='face_2'></div>
-         <div class='face_2'></div>
-         </div>`;
-        }
-
-    content += `<div class = "piece" id='${piece.pips[0].position}${piece.pips[1].position}'>
     <div class = "div_face_2 pip_${piece.pips[1].position}">
     ${face2}
     </div>
     </div>`;
 
-        face2 = ``;
+    face1 = ``;
+    face2 = ``;
 
-        console.log(content);
+    console.log(content);
 
-    });
+});
 
-    player_2.innerHTML = content;
-    console.log(player_2);
+player_1.innerHTML = content;
+console.log(player_1);
+
+content = ``;
+face1 = ``;
+face2 = ``;
+
+piece_2.forEach(piece => {
+    if (piece.pips[0].position === 1) {
+        face1 = `<div class='middle'>
+        <div class='face_1'></div>
+        </div>`;
+    }
+    if (piece.pips[0].position === 2) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 3) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 4) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 5) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 6) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+
+    if (piece.pips[1].position === 1) {
+        face2 = `<div class='middle'>
+        <div class='face_1'></div>
+        </div>`;
+    }
+    if (piece.pips[1].position === 2) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 3) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 4) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 5) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 6) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+
+    content += `<div class = "piece" id='${piece.pips[0].position}${piece.pips[1].position}'> 
+    <div class = "div_face_1 pip_${piece.pips[0].position}">
+    ${face1}
+    </div>
+    <div class = "div_face_2 pip_${piece.pips[1].position}">
+    ${face2}
+    </div>
+    </div>`;
+
+    face1 = ``;
+    face2 = ``;
+
+    console.log(content);
+
+});
+
+player_2.innerHTML = content;
+console.log(player_2);
+
+
 
 
