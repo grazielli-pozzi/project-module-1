@@ -58,7 +58,7 @@ button {
 
 .piece {
     border: solid black 1px;
-    height: 30%;
+    height: 35%;
     width: 10%;
     background-image: linear-gradient(#000, #000);
     background-size: 2px 100%;
