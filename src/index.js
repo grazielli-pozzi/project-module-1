@@ -8,9 +8,11 @@
 class Game {
     constructor(setOfPieces) {
         this.setOfPieces = setOfPieces;
-        this.piecesPlayer1 = selectInitialSetOfPieces('player1');
-        this.piecesPlayer2 = selectInitialSetOfPieces('player2');
-        this.playerTurn;
+        this.piecesPlayer1 = this.selectInitialSetOfPieces('player1');
+        this.piecesPlayer2 = this.selectInitialSetOfPieces('player2');
+        this.playerTurn = 'player1';
+        this.availablePieces = setOfPieces;
+        this.table = [];
     }
 
     shufflePieces() {
@@ -26,6 +28,7 @@ class Game {
     }
 
     selectInitialSetOfPieces(player) {
+        this.shufflePieces();
         const newArr = this.setOfPieces.splice(0, 6);
         for (let i = 0; i < newArr.length; i++) {
             newArr[i].player = player;
@@ -57,10 +60,12 @@ class Game {
         } else {
             if (sum1 > sum2) {
                 this.playerTurn = 'player2';
-                return piece_1;
+                this.piecesPlayed.push(piece_1);
+                return this.piecesPlayed;
             } else {
                 this.playerTurn = 'player1';
-                return piece_2;
+                this.piecesPlayed.push(piece_2);
+                return this.piecesPlayed;
             }
         }
     }
@@ -73,31 +78,34 @@ class Game {
         }
     }
 
-
-
     //Blocking pieces that do not match with the piece on the table
     checkPossiblePieces(piece) {
         let countPiecesPlayer1 = 0;
         let countPiecesPlayer2 = 0;
+        let possiblePieces = [];
         if (this.playerTurn === 'player1') {
             for (let i = 0; i < this.piecesPlayer1.length; i++) {
                 if (piece.pips[0].status === "free") {
                     if (piece.pips[0].position === this.piecesPlayer1[i].pips[0].position) {
                         this.piecesPlayer1[i].pips[0].status = "possible";
+                        possiblePieces.push(this.piecesPlayer1[i]);
                         countPiecesPlayer1 += 1;
                     }
                 }
                 if (piece.pips[1].status === "free") {
                     if (piece.pips[1].position === this.piecesPlayer1[i].pips[1].position) {
                         this.piecesPlayer1[i].pips[1].status = "possible";
+                        possiblePieces.push(this.piecesPlayer1[i]);
                         countPiecesPlayer1 += 1;
                     }
                 }
             }
-            if(countPiecesPlayer1 === 0) {
-               console.log('No pieces available to be played');     
+            if (countPiecesPlayer1 === 0) {
+                return 'No pieces available to be played';
+                //Chamar método getNewPiece()?   
+            } else {
+                return possiblePieces;
             }
-            return this.piecesPlayer1;
         }
 
         if (this.playerTurn === 'player2') {
@@ -105,31 +113,52 @@ class Game {
                 if (piece.pips[0].status === "free") {
                     if (piece.pips[0].position === this.piecesPlayer2[i].pips[0].position) {
                         this.piecesPlayer2[i].pips[0].status = "possible";
+                        possiblePieces.push(this.piecesPlayer2[i]);
                         countPiecesPlayer2 += 1;
                     }
                 }
                 if (piece.pips[1].status === "free") {
                     if (piece.pips[1].position === this.piecesPlayer2[i].pips[1].position) {
                         this.piecesPlayer2[i].pips[1].status = "possible";
+                        possiblePieces.push(this.piecesPlayer2[i]);
                         countPiecesPlayer2 += 1;
                     }
                 }
             }
-            if(countPiecesPlayer2 === 0) {
-                console.log('No pieces available to be played');     
-             }
-             return this.piecesPlayer2;
+            if (countPiecesPlayer2 === 0) {
+                return 'No pieces available to be played';
+            } else {
+                return possiblePieces;
+            }
         }
 
     }
 
+    //UPDATE SET OF PIECES FOR EACH PLAYER
+    updateSetOfPieces(piece) {
+        if(this.playerTurn === 'player1') {
+            this.piecesPlayer1.splice(i, 1);
+            return this.piecesPlayer1;
+        }
+        if(this.playerTurn === 'player2') {
+            this.piecesPlayer2.splice(i, 1);
+            return this.piecesPlayer2;
+        }
+    }
+    
 
-    countRemainingPieces() {
 
+    countRemainingPieces(player) {
+        if (player === 'player1') {
+            return this.piecesPlayer1.length;
+        }
+        if (player === 'player2') {
+            return this.piecesPlayer2.length;
+        }
     }
 
-    countSumOfPips() {
-
+    countSumOfPips(piece) {
+        return piece.sum;
     }
 
     showWinner() {
@@ -138,9 +167,12 @@ class Game {
 
 }
 
-class Player {
-    constructor() {
-
+class Player extends Game {
+    constructor(setOfPieces) {
+        super(setOfPieces)
+        this.setOfPieces = setOfPieces;
+        this.availablePieces = setOfPieces;
+        this.piecesPlayed = [];
     }
 
     choosePieceToBeMoved() {
@@ -151,13 +183,28 @@ class Player {
 
     }
 
-    movePiece() {
-
+    movePiece(piece) {
+        // if(this.table[length-1].pips[1].)
+        // this.table
     }
 
     //When player has no more pieces to match with the piece in the table
-    getNewPiece() {
-
+    getNewPiece(player, piece) {
+        //add event listener in piece
+        piece.player = player;
+        for (let i = 0; i < this.availablePieces.length; i++) {
+            if (piece.idPiece === this.availablePieces[i].idPiece) {
+                this.availablePieces[i].player = player;
+                this.availablePieces.splice(i, 1);
+            if(player === 'player1') {
+                this.piecesPlayer1.push(piece);
+            }
+            if(player === 'player2') {
+                this.piecesPlayer2.push(piece);
+            }
+                return this.availablePieces;
+            }
+        }
     }
 
 
