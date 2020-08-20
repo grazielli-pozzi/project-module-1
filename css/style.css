@@ -50,12 +50,12 @@ button {
 
 
 .initialPieces {
-    display: none;
+   
 }
 
 .players {
-    height: 130px;
-    width: 200px;
+    height: auto;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -63,19 +63,28 @@ button {
 }
 
 .player_2 {
-    height: 50%;
+    height: auto;
     /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 .player_1 {
-    height: 50%;
+    height: auto;
     /* Não entendi porque as peças não estão dentro dessa div */
+}
+
+.player_1 > div {
+    margin-bottom: 10px;
+}
+
+.player_2 > div {
+    margin-bottom: 10px;
 }
 
 
 .piece {
     border: solid black 1px;
-    height: 100%;
+    height: 30px;
+    width: 70px;
     background-image: linear-gradient(#000, #000);
     background-size: 2px 100%;
     background-repeat: no-repeat;
@@ -83,7 +92,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: end;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 .div_face_1 {
@@ -91,6 +100,7 @@ button {
     flex-direction: row;
     justify-content: space-around;
     width: 50%;
+    padding: 3px;
 }
 
 .div_face_2 {
@@ -98,6 +108,7 @@ button {
     flex-direction: row;
     justify-content: space-around;
     width: 50%;
+    padding: 3px;
 }
 
 .face_1 {
@@ -118,19 +129,19 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 2px;
+    padding: 1px;
 }
 
 .middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0.5px;
+    padding: 1px;
 }
 
 .end {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 2px;
+    padding: 1px;
 }

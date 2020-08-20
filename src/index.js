@@ -29,7 +29,8 @@ class Game {
 
     selectInitialSetOfPieces(player) {
         this.shufflePieces();
-        const newArr = this.setOfPieces.splice(0, 6);
+        let copyOfSetOfPieces = this.setOfPieces;
+        let newArr = copyOfSetOfPieces.splice(0, 6);
         for (let i = 0; i < newArr.length; i++) {
             newArr[i].player = player;
         }
@@ -90,6 +91,7 @@ class Game {
                         this.piecesPlayer1[i].pips[0].status = "possible";
                         possiblePieces.push(this.piecesPlayer1[i]);
                         countPiecesPlayer1 += 1;
+                        //Implementar lógica para ele não repetir o mesmo elemento no array
                     }
                 }
                 if (piece.pips[1].status === "free") {
@@ -167,58 +169,56 @@ class Game {
 
 }
 
-class Player extends Game {
-    constructor(setOfPieces) {
-        super(setOfPieces)
-        this.setOfPieces = setOfPieces;
-        this.availablePieces = setOfPieces;
-        this.piecesPlayed = [];
-    }
+// class Player extends Game {
+//     constructor(setOfPieces) {
+//         super(setOfPieces)
+//         this.piecesPlayed = [];
+//     }
 
-    choosePieceToBeMoved() {
+//     choosePieceToBeMoved() {
 
-    }
+//     }
 
-    choosePosition() {
+//     choosePosition() {
 
-    }
+//     }
 
-    movePiece(piece) {
-        // if(this.table[length-1].pips[1].)
-        // this.table
-    }
+//     movePiece(piece) {
+//         // if(this.table[length-1].pips[1].)
+//         // this.table
+//     }
 
-    //When player has no more pieces to match with the piece in the table
-    getNewPiece(player, piece) {
-        //add event listener in piece
-        piece.player = player;
-        for (let i = 0; i < this.availablePieces.length; i++) {
-            if (piece.idPiece === this.availablePieces[i].idPiece) {
-                this.availablePieces[i].player = player;
-                this.availablePieces.splice(i, 1);
-            if(player === 'player1') {
-                this.piecesPlayer1.push(piece);
-            }
-            if(player === 'player2') {
-                this.piecesPlayer2.push(piece);
-            }
-                return this.availablePieces;
-            }
-        }
-    }
+//     //When player has no more pieces to match with the piece in the table
+//     getNewPiece(player, piece) {
+//         //add event listener in piece
+//         piece.player = player;
+//         for (let i = 0; i < this.availablePieces.length; i++) {
+//             if (piece.idPiece === this.availablePieces[i].idPiece) {
+//                 this.availablePieces[i].player = player;
+//                 this.availablePieces.splice(i, 1);
+//             if(player === 'player1') {
+//                 this.piecesPlayer1.push(piece);
+//             }
+//             if(player === 'player2') {
+//                 this.piecesPlayer2.push(piece);
+//             }
+//                 return this.availablePieces;
+//             }
+//         }
+//     }
 
 
-}
+// }
 
-class Piece {
-    constructor() {
+// class Piece {
+//     constructor() {
 
-    }
+//     }
 
-    drawPiece() {
+//     drawPiece() {
 
-    }
-}
+//     }
+// }
 
 // let game = new Game([2, 3, 4, 5, 10, 30]);
 // console.log(game.selectInitialSetOfPieces([1, 2, 3, 4, 5, 6, 7, 8]));
