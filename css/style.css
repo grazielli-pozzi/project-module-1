@@ -12,6 +12,14 @@ section {
    /* Adicionar imagem com os dominós na seção. */
 }
 
+.initial-page {
+    /* display: none; */
+}
+
+.piece-table {
+  
+}
+
 h1, label {
     text-align: center;
     font-weight: bold;
@@ -92,7 +100,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: end;
-    /* padding: 5px; */
+    background-color: white;
 }
 
 .div_face_1 {

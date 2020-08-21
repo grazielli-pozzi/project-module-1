@@ -13,6 +13,7 @@ class Game {
         this.playerTurn = 'player1';
         this.availablePieces = setOfPieces;
         this.table = [];
+        this.piecesPlayed = [];
     }
 
     shufflePieces() {
@@ -57,16 +58,19 @@ class Game {
             }
         }
         if (piece_1.length === 0 && piece_2.length === 0) {
-            return 'Embaralhar de novo';
+            console.log("Embaralhando de novo");
+            this.shufflePieces();
+            this.checkWhoStarts(arr1, arr2);
+            //Inserir as peças retiradas (6 de cada jogador) no set original de peças
         } else {
             if (sum1 > sum2) {
                 this.playerTurn = 'player2';
                 this.piecesPlayed.push(piece_1);
-                return this.piecesPlayed;
+                return piece_1;
             } else {
                 this.playerTurn = 'player1';
                 this.piecesPlayed.push(piece_2);
-                return this.piecesPlayed;
+                return piece_2;
             }
         }
     }

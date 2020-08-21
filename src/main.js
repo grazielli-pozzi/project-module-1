@@ -81,25 +81,167 @@ const pieces = [
 // ];
 
 let game = new Game(pieces);
-let initialPiecesPlayer1 = game.selectInitialSetOfPieces('player1');
-let initialPiecesPlayer2 = game.selectInitialSetOfPieces('player2');
 
+//DISPLAYING THE PIECES ON THE BOARD
 
-//CREATING THE INITIAL SET OF PIECES
+let initialPieces = game.setOfPieces;
+let initialPiecesBoard = document.querySelector(".initialPieces");
+let content = '';
+let face1 = ``;
+let face2 = ``;
 
-// table.innerHTML = game.shufflePieces(pieces);
-//Fazer como foi feito para as peças de cada jogador
+initialPieces.forEach(piece => {
+    if (piece.pips[0].position === 1) {
+        face1 = `<div class='middle'>
+        <div class='face_1'></div>
+        </div>`;
+    }
+    if (piece.pips[0].position === 2) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 3) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 4) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 5) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[0].position === 6) {
+        face1 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
 
+    if (piece.pips[1].position === 1) {
+        face2 = `<div class='middle'>
+        <div class='face_1'></div>
+        </div>`;
+    }
+    if (piece.pips[1].position === 2) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 3) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 4) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 5) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+    if (piece.pips[1].position === 6) {
+        face2 = `<div class='start'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='middle'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>
+         <div class='end'>
+         <div class='face_1'></div>
+         <div class='face_1'></div>
+         </div>`;
+    }
+
+    content += `<div class = "piece piece-table" id='piece-${piece.pips[0].position}${piece.pips[1].position}'> 
+    <div class = "div_face_1 pip_${piece.pips[0].position}">
+    ${face1}
+    </div>
+    <div class = "div_face_2 pip_${piece.pips[1].position}">
+    ${face2}
+    </div>
+    </div>`;
+
+    face1 = ``;
+    face2 = ``;
+})
+
+initialPiecesBoard.innerHTML = content;
 
 //CREATING THE PIECES FOR EACH PLAYER
 
+//PLAYER 1
+
+let initialPiecesPlayer1 = game.piecesPlayer1;
 let player_1 = document.querySelector(".player_1");
 player_1.innerHTML = game.piecesPlayer1;
 let player_2 = document.querySelector(".player_2");
 player_2.innerHTML = game.piecesPlayer2;
-let content = '';
-let face1 = ``;
-let face2 = ``;
+content = '';
+face1 = ``;
+face2 = ``;
 
 initialPiecesPlayer1.forEach(piece => {
     if (piece.pips[0].position === 1) {
@@ -226,7 +368,7 @@ initialPiecesPlayer1.forEach(piece => {
          </div>`;
     }
 
-    content += `<div class = "piece" id='piece-${piece.pips[0].position}${piece.pips[1].position}'> 
+    content += `<div class = "piece" id='${piece.pips[0].position}${piece.pips[1].position}'> 
     <div class = "div_face_1 pip_${piece.pips[0].position}">
     ${face1}
     </div>
@@ -242,6 +384,9 @@ initialPiecesPlayer1.forEach(piece => {
 
 player_1.innerHTML = content;
 
+//PLAYER 2
+
+let initialPiecesPlayer2 = game.piecesPlayer2;
 content = ``;
 face1 = ``;
 face2 = ``;
@@ -371,7 +516,7 @@ initialPiecesPlayer2.forEach(piece => {
          </div>`;
     }
 
-    content += `<div class = "piece" id='piece-${piece.pips[0].position}${piece.pips[1].position}'> 
+    content += `<div class = "piece" id='${piece.pips[0].position}${piece.pips[1].position}'> 
     <div class = "div_face_1 pip_${piece.pips[0].position}">
     ${face1}
     </div>
@@ -387,40 +532,58 @@ initialPiecesPlayer2.forEach(piece => {
 
 player_2.innerHTML = content;
 
-const pieceTest = { pips: [{ position: 0, status: "free" }, { position: 6, status: "free" }], idPiece: 06, sum: 7, doubled: false, player: undefined };
+//CREATING EVENT LISTENER FOR THE BUTTON TO CHANGE PAGE WHEN USER CLICKS IN START THE GAME
 
-// //CREATING EVENT LISTENERS FOR EACH PEACE - POSSIBLE TO BE MOVED
+let startButton = document.querySelector('.button');
+
+startButton.addEventListener('click', () => {
+    document.querySelector('.initial-page').style.display = "none";
+})
+
+//CHECKING FIRST PIECE TO BE PLAYED
 
 let board = document.querySelector(".board");
+let firstPieceToBePlayed = game.checkWhoStarts(initialPiecesPlayer1, initialPiecesPlayer2);
+console.log(firstPieceToBePlayed);
+let firstPieceToBePlayedID = firstPieceToBePlayed[0].idPiece;
+let pieceToBeMoved = document.querySelector(`div[id='${firstPieceToBePlayedID}']`);
+console.log(pieceToBeMoved);
+board.appendChild(pieceToBeMoved);
 
-let piecesToBeClicked = game.checkPossiblePieces(pieceTest);
+const pieceTest = { pips: [{ position: 0, status: "free" }, { position: 6, status: "free" }], idPiece: '06', sum: 7, doubled: false, player: undefined };
+
+//CREATING EVENT LISTENERS FOR EACH PIECE POSSIBLE TO BE MOVED
+
+let playerTurn = game.playerTurn;
+console.log(playerTurn);
+
+let piecesToBeClicked = game.checkPossiblePieces(firstPieceToBePlayed[0]);
 
 if(piecesToBeClicked.length !== 0) {
     for (let i=0; i<piecesToBeClicked.length; i++) {
-        // let pieceID_1 = JSON.stringify(piecesToBeClicked[i].pips[0].position);
-        // let pieceID_2 = JSON.stringify(piecesToBeClicked[i].pips[1].position);
-        // let pieceID = +(pieceID_1+pieceID_2);
-        // document.querySelector("[id='1']")
-        // document.querySelector(`#${CSS.escape(theId)}`)
-        // document.querySelector('#' + CSS.escape(pieceId))
         let pieceID = piecesToBeClicked[i].idPiece;
-        let teste = `piece-${pieceID}`
-        // let piece = document.querySelector(`div[id='${pieceID}']`);
-        let piece = document.getElementById(teste);
-        console.log(pieceID, piece, teste);
-        // let piece = document.querySelector('#' + CSS.escape(pieceID));
-        // let piece = document.querySelector(`${pieceID}`);
-        // piece.addEventListener('click', () => {
-        //     board.appendChild(piece);
-        //     initialPiecesPlayer1.removeChild(piece);
-        // })
+        let piece = document.querySelector(`div[id='${pieceID}']`);
+        if(playerTurn === 'player1') {
+            let player1Board = document.querySelector('.player_1');
+            piece.addEventListener('click', () => {
+                board.appendChild(piece);
+                player1Board.removeChild(piece);
+                // piecesToBeClicked = game.checkPossiblePieces();
+            })
+        }
+        if(playerTurn === 'player2') {
+            let player2Board = document.querySelector('.player_2');
+            piece.addEventListener('click', () => {
+                board.appendChild(piece);
+                player2Board.removeChild(piece);
+            })
+        }
     }
 } else {
     game.shufflePieces();
     game.selectInitialSetOfPieces('player1');
     game.selectInitialSetOfPieces('player2');
     piecesToBeClicked = game.checkPossiblePieces(pieceTest);
-
 }
 
 
