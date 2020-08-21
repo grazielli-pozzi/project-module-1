@@ -242,6 +242,7 @@ player_2.innerHTML = game.piecesPlayer2;
 content = '';
 face1 = ``;
 face2 = ``;
+let content2 = ``;
 
 initialPiecesPlayer1.forEach(piece => {
     if (piece.pips[0].position === 1) {
@@ -382,7 +383,11 @@ initialPiecesPlayer1.forEach(piece => {
 
 });
 
-player_1.innerHTML = content;
+content2 = `<h3>PLAYER 1</h3>
+${content}`;
+
+player_1.innerHTML = content2;
+
 
 //PLAYER 2
 
@@ -390,6 +395,7 @@ let initialPiecesPlayer2 = game.piecesPlayer2;
 content = ``;
 face1 = ``;
 face2 = ``;
+content2 = ``;
 
 initialPiecesPlayer2.forEach(piece => {
     if (piece.pips[0].position === 1) {
@@ -530,7 +536,10 @@ initialPiecesPlayer2.forEach(piece => {
 
 });
 
-player_2.innerHTML = content;
+content2 = `<h3>PLAYER 2</h3>
+${content}`;
+
+player_2.innerHTML = content2;
 
 //CREATING EVENT LISTENER FOR THE BUTTON TO CHANGE PAGE WHEN USER CLICKS IN START THE GAME
 
@@ -543,11 +552,10 @@ startButton.addEventListener('click', () => {
 //CHECKING FIRST PIECE TO BE PLAYED
 
 let board = document.querySelector(".board");
+console.log(board);
 let firstPieceToBePlayed = game.checkWhoStarts(initialPiecesPlayer1, initialPiecesPlayer2);
-console.log(firstPieceToBePlayed);
 let firstPieceToBePlayedID = firstPieceToBePlayed[0].idPiece;
 let pieceToBeMoved = document.querySelector(`div[id='${firstPieceToBePlayedID}']`);
-console.log(pieceToBeMoved);
 board.appendChild(pieceToBeMoved);
 
 const pieceTest = { pips: [{ position: 0, status: "free" }, { position: 6, status: "free" }], idPiece: '06', sum: 7, doubled: false, player: undefined };
@@ -555,9 +563,10 @@ const pieceTest = { pips: [{ position: 0, status: "free" }, { position: 6, statu
 //CREATING EVENT LISTENERS FOR EACH PIECE POSSIBLE TO BE MOVED
 
 let playerTurn = game.playerTurn;
-console.log(playerTurn);
 
 let piecesToBeClicked = game.checkPossiblePieces(firstPieceToBePlayed[0]);
+console.log(piecesToBeClicked);
+// console.log(game.position);
 
 if(piecesToBeClicked.length !== 0) {
     for (let i=0; i<piecesToBeClicked.length; i++) {
@@ -566,16 +575,19 @@ if(piecesToBeClicked.length !== 0) {
         if(playerTurn === 'player1') {
             let player1Board = document.querySelector('.player_1');
             piece.addEventListener('click', () => {
-                board.appendChild(piece);
+                console.log(piece);
+                console.log(piece.id);
                 player1Board.removeChild(piece);
+                board.appendChild(piece);
+                // piecesToBeClicked[i].
                 // piecesToBeClicked = game.checkPossiblePieces();
             })
         }
         if(playerTurn === 'player2') {
             let player2Board = document.querySelector('.player_2');
             piece.addEventListener('click', () => {
-                board.appendChild(piece);
                 player2Board.removeChild(piece);
+                board.appendChild(piece);
             })
         }
     }

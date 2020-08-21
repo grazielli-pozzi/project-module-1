@@ -14,6 +14,7 @@ class Game {
         this.availablePieces = setOfPieces;
         this.table = [];
         this.piecesPlayed = [];
+        this.position = 0;
     }
 
     shufflePieces() {
@@ -93,6 +94,7 @@ class Game {
                 if (piece.pips[0].status === "free") {
                     if (piece.pips[0].position === this.piecesPlayer1[i].pips[0].position) {
                         this.piecesPlayer1[i].pips[0].status = "possible";
+                        this.position = this.piecesPlayer1[i].pips[0].position;
                         possiblePieces.push(this.piecesPlayer1[i]);
                         countPiecesPlayer1 += 1;
                         //Implementar lógica para ele não repetir o mesmo elemento no array
@@ -101,6 +103,7 @@ class Game {
                 if (piece.pips[1].status === "free") {
                     if (piece.pips[1].position === this.piecesPlayer1[i].pips[1].position) {
                         this.piecesPlayer1[i].pips[1].status = "possible";
+                        this.position = this.piecesPlayer1[i].pips[1].position;
                         possiblePieces.push(this.piecesPlayer1[i]);
                         countPiecesPlayer1 += 1;
                     }
@@ -119,6 +122,7 @@ class Game {
                 if (piece.pips[0].status === "free") {
                     if (piece.pips[0].position === this.piecesPlayer2[i].pips[0].position) {
                         this.piecesPlayer2[i].pips[0].status = "possible";
+                        this.position = this.piecesPlayer2[i].pips[0].position;
                         possiblePieces.push(this.piecesPlayer2[i]);
                         countPiecesPlayer2 += 1;
                     }
@@ -126,6 +130,7 @@ class Game {
                 if (piece.pips[1].status === "free") {
                     if (piece.pips[1].position === this.piecesPlayer2[i].pips[1].position) {
                         this.piecesPlayer2[i].pips[1].status = "possible";
+                        this.position = this.piecesPlayer2[i].pips[1].position;
                         possiblePieces.push(this.piecesPlayer2[i]);
                         countPiecesPlayer2 += 1;
                     }
@@ -139,6 +144,16 @@ class Game {
         }
 
     }
+
+    changeStatus(pieceId, piece) {
+        for (let i=0; i<pieceId.length; i++) {
+            if(pieceId[i] === this.position) {
+                piece[i].status = "occupied";
+                console.log(piece[i]);
+            }
+        }
+    }
+
 
     //UPDATE SET OF PIECES FOR EACH PLAYER
     updateSetOfPieces(piece) {
