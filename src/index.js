@@ -66,11 +66,11 @@ class Game {
         } else {
             if (sum1 > sum2) {
                 this.playerTurn = 'player2';
-                this.piecesPlayed.push(piece_1);
+                this.piecesPlayed.push(piece_1[0]);
                 return piece_1;
             } else {
                 this.playerTurn = 'player1';
-                this.piecesPlayed.push(piece_2);
+                this.piecesPlayed.push(piece_2[0]);
                 return piece_2;
             }
         }

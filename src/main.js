@@ -552,7 +552,6 @@ startButton.addEventListener('click', () => {
 //CHECKING FIRST PIECE TO BE PLAYED
 
 let board = document.querySelector(".board");
-console.log(board);
 let firstPieceToBePlayed = game.checkWhoStarts(initialPiecesPlayer1, initialPiecesPlayer2);
 let firstPieceToBePlayedID = firstPieceToBePlayed[0].idPiece;
 let pieceToBeMoved = document.querySelector(`div[id='${firstPieceToBePlayedID}']`);
@@ -564,58 +563,94 @@ const pieceTest = { pips: [{ position: 0, status: "free" }, { position: 6, statu
 
 let playerTurn = game.playerTurn;
 
-let piecesToBeClicked = game.checkPossiblePieces(firstPieceToBePlayed[0]);
+// let piecesToBeClicked = game.checkPossiblePieces();
 let playerTitle = '';
 let message = document.querySelector(".message");
-console.log(piecesToBeClicked);
 // console.log(game.position);
 
-if (piecesToBeClicked.length !== 0) {
-    for (let i = 0; i < piecesToBeClicked.length; i++) {
-        let pieceID = piecesToBeClicked[i].idPiece;
-        let piece = document.querySelector(`div[id='${pieceID}']`);
-        if (playerTurn === 'player1') {
-            document.querySelector('.player2').style.textDecoration = "none";
-            document.querySelector('.player1').style.textDecoration = "underline overline";
-            let player1Board = document.querySelector('.player_1');
-            piece.addEventListener('click', () => {
-                // console.log(piece);
-                // console.log(piece.id);
-                player1Board.removeChild(piece);
-                board.appendChild(piece);
-                playerTurn === 'player2';
-                document.querySelector('.player2').style.textDecoration = "underline overline";
+function movePieces(pieceToBeMoved) {
+    let piecesToBeClicked = game.checkPossiblePieces(pieceToBeMoved);
+    console.log(piecesToBeClicked);
+    if (piecesToBeClicked.length !== 0) {
+        for (let i = 0; i < piecesToBeClicked.length; i++) {
+            let pieceID = piecesToBeClicked[i].idPiece;
+            let piece = document.querySelector(`div[id='${pieceID}']`);
+            if (game.playerTurn === 'player1') {
+                document.querySelector('.player2').style.textDecoration = "none";
+                document.querySelector('.player1').style.textDecoration = "underline overline";
+                let player1Board = document.querySelector('.player_1');
+                piece.addEventListener('click', () => {
+                    game.piecesPlayed.push(piecesToBeClicked[i]);
+                    player1Board.removeChild(piece);
+                    board.appendChild(piece);
+                    game.checkPlayerTurn();
+                    movePieces(piecesToBeClicked[i]);
+                    document.querySelector('.player2').style.textDecoration = "underline overline";
+                    document.querySelector('.player1').style.textDecoration = "none";
+                    if (piecesToBeClicked[i].pips[0].position === game.position) {
+                        piecesToBeClicked[i].pips[0].status = "occupied";
+                    }
+                    if (piecesToBeClicked[i].pips[1].position === game.position) {
+                        piecesToBeClicked[i].pips[1].status = "occupied";
+                    }
+                    game.piecesPlayed.push(piecesToBeClicked[i]);
+                    // for (let i = 0; i < 2; i++) {
+                    //     if (game.piecesPlayed[0].pips[i].position === game.position && game.piecesPlayed[0].pips[i].status === "free") {
+                    //         game.piecesPlayed[0].pips[i].status === "occupied";
+                    //         player1Board.removeChild(piece);
+                    //         board.appendChild(piece);
+                    //         playerTurn === 'player2';
+                    //         document.querySelector('.player2').style.textDecoration = "underline overline";
+                    //         document.querySelector('.player1').style.textDecoration = "none";
+                    //     } else if (game.piecesPlayed[length - 1].pips[i].position === game.position && game.piecesPlayed[length - 1].pips[i].status === "free") {
+                    //         game.piecesPlayed[length - 1].pips[i].status === "occupied";
+                    //         player1Board.removeChild(piece);
+                    //         board.appendChild(piece);
+                    //         playerTurn === 'player2';
+                    //         document.querySelector('.player2').style.textDecoration = "underline overline";
+                    //         document.querySelector('.player1').style.textDecoration = "none";
+                    //     }
+                    // }
+                })
+            }
+            if (game.playerTurn === 'player2') {
                 document.querySelector('.player1').style.textDecoration = "none";
-            })
+                document.querySelector('.player2').style.textDecoration = "underline overline";
+                let player2Board = document.querySelector('.player_2');
+                piece.addEventListener('click', () => {
+                    player2Board.removeChild(piece);
+                    board.appendChild(piece);
+                    game.checkPlayerTurn();
+                    movePieces(piecesToBeClicked[i]);
+                    document.querySelector('.player1').style.textDecoration = "underline overline";
+                    document.querySelector('.player2').style.textDecoration = "none";
+                    if (piecesToBeClicked[i].pips[0].position === game.position) {
+                        piecesToBeClicked[i].pips[0].status = "occupied";
+                    }
+                    if (piecesToBeClicked[i].pips[1].position === game.position) {
+                        piecesToBeClicked[i].pips[1].status = "occupied";
+                    }
+                    game.piecesPlayed.push(piecesToBeClicked[i]);
+                })
+            }
         }
-        if (playerTurn === 'player2') {
+    } else {
+        if (game.playerTurn === 'player2') {
             document.querySelector('.player1').style.textDecoration = "none";
             document.querySelector('.player2').style.textDecoration = "underline overline";
-            let player2Board = document.querySelector('.player_2');
-            piece.addEventListener('click', () => {
-                player2Board.removeChild(piece);
-                board.appendChild(piece);
-                playerTurn === 'player1';
-                document.querySelector('.player1').style.textDecoration = "underline overline";
-                document.querySelector('.player2').style.textDecoration = "none";
-            })
+            message.innerHTML += `<div> Player 2, compre uma peça!</div>`;
         }
+        if (game.playerTurn === 'player1') {
+            document.querySelector('.player2').style.textDecoration = "none";
+            document.querySelector('.player1').style.textDecoration = "underline overline";
+            message.innerHTML += `<div> Player 1, compre uma peça!</div>`;
+        }
+        game.shufflePieces();
+        game.selectInitialSetOfPieces('player1');
+        game.selectInitialSetOfPieces('player2');
+        piecesToBeClicked = game.checkPossiblePieces(pieceTest);
     }
-} else {
-    if (playerTurn === 'player2') {
-        document.querySelector('.player1').style.textDecoration = "none";
-        document.querySelector('.player2').style.textDecoration = "underline overline";
-        message.innerHTML += `<div> Player 2, compre uma peça!</div>`;
-    }
-    if (playerTurn === 'player1') {
-        document.querySelector('.player2').style.textDecoration = "none";
-        document.querySelector('.player1').style.textDecoration = "underline overline";
-        message.innerHTML += `<div> Player 1, compre uma peça!</div>`;
-    }
-    game.shufflePieces();
-    game.selectInitialSetOfPieces('player1');
-    game.selectInitialSetOfPieces('player2');
-    piecesToBeClicked = game.checkPossiblePieces(pieceTest);
 }
 
 
+movePieces(firstPieceToBePlayed[0]);
