@@ -149,7 +149,7 @@ class Game {
         for (let i=0; i<pieceId.length; i++) {
             if(pieceId[i] === this.position) {
                 piece[i].status = "occupied";
-                console.log(piece[i]);
+                console.log(piece)
             }
         }
     }
