@@ -563,10 +563,10 @@ const pieceTest = { pips: [{ position: 0, status: "free" }, { position: 6, statu
 //CREATING EVENT LISTENERS FOR EACH PIECE POSSIBLE TO BE MOVED
 
 let playerTurn = game.playerTurn;
-// document.querySelector('.player1').style.textDecoration = "underline overline";
 
 let piecesToBeClicked = game.checkPossiblePieces(firstPieceToBePlayed[0]);
 let playerTitle = '';
+let message = document.querySelector(".message");
 console.log(piecesToBeClicked);
 // console.log(game.position);
 
@@ -579,15 +579,13 @@ if (piecesToBeClicked.length !== 0) {
             document.querySelector('.player1').style.textDecoration = "underline overline";
             let player1Board = document.querySelector('.player_1');
             piece.addEventListener('click', () => {
-                console.log(piece);
-                console.log(piece.id);
+                // console.log(piece);
+                // console.log(piece.id);
                 player1Board.removeChild(piece);
                 board.appendChild(piece);
                 playerTurn === 'player2';
                 document.querySelector('.player2').style.textDecoration = "underline overline";
                 document.querySelector('.player1').style.textDecoration = "none";
-                // playerTitle = document.querySelector('.player2');
-                // playerTitle.style.textDecoration = "underline overline";
             })
         }
         if (playerTurn === 'player2') {
@@ -600,12 +598,20 @@ if (piecesToBeClicked.length !== 0) {
                 playerTurn === 'player1';
                 document.querySelector('.player1').style.textDecoration = "underline overline";
                 document.querySelector('.player2').style.textDecoration = "none";
-                // playerTitle = document.querySelector('.player1');
-                // playerTitle.style.textDecoration = "underline overline";
             })
         }
     }
 } else {
+    if (playerTurn === 'player2') {
+        document.querySelector('.player1').style.textDecoration = "none";
+        document.querySelector('.player2').style.textDecoration = "underline overline";
+        message.innerHTML += `<div> Player 2, compre uma peça!</div>`;
+    }
+    if (playerTurn === 'player1') {
+        document.querySelector('.player2').style.textDecoration = "none";
+        document.querySelector('.player1').style.textDecoration = "underline overline";
+        message.innerHTML += `<div> Player 1, compre uma peça!</div>`;
+    }
     game.shufflePieces();
     game.selectInitialSetOfPieces('player1');
     game.selectInitialSetOfPieces('player2');

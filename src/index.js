@@ -109,12 +109,7 @@ class Game {
                     }
                 }
             }
-            if (countPiecesPlayer1 === 0) {
-                return 'No pieces available to be played';
-                //Chamar método getNewPiece()?   
-            } else {
-                return possiblePieces;
-            }
+            return possiblePieces;
         }
 
         if (this.playerTurn === 'player2') {
@@ -136,11 +131,7 @@ class Game {
                     }
                 }
             }
-            if (countPiecesPlayer2 === 0) {
-                return 'No pieces available to be played';
-            } else {
-                return possiblePieces;
-            }
+            return possiblePieces;
         }
 
     }

@@ -9,15 +9,15 @@ section {
    padding: 50px;
    text-align: center;
    width: 100%;
-   /* Adicionar imagem com os dominós na seção. */
 }
 
-.initial-page {
-    /* display: none; */
-}
+.initialPieces {
+    display: flex;
+    flex-direction: row;
+ }
 
 .piece-table {
-  
+  margin: 2px;
 }
 
 h1, label {
@@ -56,28 +56,20 @@ button {
     font-size: 20px;
 }
 
-
-.initialPieces {
-   
-}
-
 .players {
     height: auto;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 .player_2 {
     height: auto;
-    /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 .player_1 {
     height: auto;
-    /* Não entendi porque as peças não estão dentro dessa div */
 }
 
 .player_1 > div {
@@ -152,4 +144,8 @@ button {
     flex-direction: column;
     justify-content: center;
     padding: 1px;
+}
+
+.message {
+    font-weight: bold;
 }
